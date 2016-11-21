@@ -26,7 +26,6 @@ class PxRowX
     end
 
     r = scan_tree labels.length, a
-
     rows = make_rows r
 
     ['items', {}, nil].reverse.each {|x| rows.unshift x}
@@ -55,7 +54,7 @@ class PxRowX
           line = a.shift
 
           r << line.shift
-          r << scan_tree(n, line) unless line.empty?
+          r.concat scan_tree(n, line) unless line.empty?
           r
 
         end
@@ -94,4 +93,3 @@ class PxRowX
     end
   end
 end
-

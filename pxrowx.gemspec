@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'pxrowx'
-  s.version = '0.1.0'
+  s.version = '0.1.1'
   s.summary = 'Creates a Polyrex document from a raw Polyrex RowX string.'
   s.authors = ['James Robertson']
   s.files = Dir['lib/pxrowx.rb']
