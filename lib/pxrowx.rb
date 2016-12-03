@@ -3,6 +3,7 @@
 # file: pxrowx.rb
 
 require 'line-tree'
+require 'rexle-builder'
 
 
 class PxRowX
@@ -29,6 +30,17 @@ class PxRowX
     rows = make_rows r
 
     ['items', {}, nil].reverse.each {|x| rows.unshift x}
+    
+    h = {
+      title: '',
+      recordx_type: 'polyrex',
+      schema: "items[title]/item[#{labels.join(', ')}]"
+    }
+    
+    summary = RexleBuilder.new(h).to_a
+    summary[0] = 'summary'
+    rows.insert 3, summary
+    
     @doc = Rexle.new(rows)
     
   end
@@ -71,8 +83,8 @@ class PxRowX
 
   def make_rows(a)
 
-    a.inject([]) do |r, x|
-
+    a.inject([]) do |r, x|      
+      
       if x.is_a? String then
 
         r = ['item',{},nil, ['summary',{}, nil ]] if r.empty?
@@ -81,11 +93,8 @@ class PxRowX
 
       elsif x.is_a? Array
 
-        if  x.length > 1 then
-          r << make_rows(x)
-        else
-          r << ['records', {}, nil, make_rows(x.first)]
-        end
+       raw_rows = x.length > 1 ? x : x.first        
+       r << ['records', {}, nil, make_rows(raw_rows)]
 
       end
 
@@ -93,3 +102,4 @@ class PxRowX
     end
   end
 end
+
