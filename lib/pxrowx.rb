@@ -8,8 +8,10 @@ require 'rexle-builder'
 
 class PxRowX
 
-  def initialize(txt)
+  def initialize(txt, record_name: 'item')
 
+    @record_name = record_name
+    
     lt = LineTree.new(txt)
     a = lt.to_a
 
@@ -34,9 +36,9 @@ class PxRowX
     h = {
       title: '',
       recordx_type: 'polyrex',
-      schema: "items[title]/item[#{labels.join(', ')}]"
+      schema: "items[title]/#{@record_name}[#{labels.join(', ')}]"
     }
-    
+
     summary = RexleBuilder.new(h).to_a
     summary[0] = 'summary'
     rows.insert 3, summary
@@ -87,7 +89,7 @@ class PxRowX
       
       if x.is_a? String then
 
-        r = ['item',{},nil, ['summary',{}, nil ]] if r.empty?
+        r = [@record_name,{},nil, ['summary',{}, nil ]] if r.empty?
         field, value = x.split(/:\s*/,2)
         r.last <<  [field, {}, value]
 
