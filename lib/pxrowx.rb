@@ -39,7 +39,7 @@ class PxRowX
       schema: "items[title]/#{@record_name}[#{labels.join(', ')}]"
     }
 
-    summary = RexleBuilder.new(h).to_a
+    summary = RexleBuilder.new(h, debug: false).to_a
     summary[0] = 'summary'
     rows.insert 3, summary
     

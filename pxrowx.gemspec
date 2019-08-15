@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'pxrowx'
-  s.version = '0.2.1'
+  s.version = '0.2.2'
   s.summary = 'Creates a Polyrex document from a raw Polyrex RowX string.'
   s.authors = ['James Robertson']
   s.files = Dir['lib/pxrowx.rb']
@@ -9,6 +9,6 @@ Gem::Specification.new do |s|
   s.signing_key = '../privatekeys/pxrowx.pem'
   s.cert_chain  = ['gem-public_cert.pem']
   s.license = 'MIT'
-  s.email = 'james@r0bertson.co.uk'
+  s.email = 'james@jamesrobertson.eu'
   s.homepage = 'https://github.com/jrobertson/pxrowx'
 end
